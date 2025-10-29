@@ -33,7 +33,9 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || '',
       max: 10,
       idleTimeoutMillis: 30000,
+      connectionTimeoutMillis: 5000,
     },
+    migrationDir: path.resolve(dirname, 'migrations'),
   }),
   sharp,
   plugins: [

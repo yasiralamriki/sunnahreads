@@ -19,9 +19,11 @@ import {
 import { Icon } from 'lucide-react';
 import { featherText } from '@lucide/lab';
 
-const payload = await getPayload({ config });
+export const dynamic = 'force-dynamic';
 
 export default async function BookPage({params}: {params: {slug: string}}) {
+  const payload = await getPayload({ config });
+  
   const book = await payload.findByID({
     collection: 'books',
     id: params.slug
