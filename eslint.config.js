@@ -5,11 +5,13 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
-// Use 'warn' in development, 'error' in production builds
-const severity = process.env.NODE_ENV === 'production' ? 'error' : 'warn'
-
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores([
+    '.next/**',
+    'out/**',
+    'build/**',
+    'next-env.d.ts',
+  ]),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
@@ -23,8 +25,8 @@ export default defineConfig([
       globals: globals.browser,
     },
     rules: {
-      quotes: [severity, 'single', { avoidEscape: true }],
-      semi: [severity, 'always'],
+      quotes: ['error', 'single', { avoidEscape: true }],
+      semi: ['error', 'always'],
     },
     settings: {
       'import/parsers': {
