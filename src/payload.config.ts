@@ -1,5 +1,6 @@
 import { buildConfig } from 'payload';
 import { postgresAdapter } from '@payloadcms/db-postgres';
+import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { s3Storage } from '@payloadcms/storage-s3';
 import path from 'path';
@@ -14,6 +15,22 @@ import { Authors } from './collections/Authors';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+// Use Vercel Postgres adapter in production (Vercel), regular adapter locally
+const isVercel = process.env.VERCEL === '1';
+const databaseAdapter = isVercel
+  ? vercelPostgresAdapter({
+      pool: {
+        connectionString: process.env.DATABASE_URI || '',
+      },
+    })
+  : postgresAdapter({
+      pool: {
+        connectionString: process.env.DATABASE_URI || '',
+      },
+      migrationDir: path.resolve(dirname, 'migrations'),
+    });
+
+// Build config
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
   admin: {
@@ -28,15 +45,7 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URI || '',
-      max: 10,
-      idleTimeoutMillis: 30000,
-      connectionTimeoutMillis: 5000,
-    },
-    migrationDir: path.resolve(dirname, 'migrations'),
-  }),
+  db: databaseAdapter,
   sharp,
   plugins: [
     s3Storage({
