@@ -9,7 +9,12 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 const severity = process.env.NODE_ENV === 'production' ? 'error' : 'warn'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores([
+    '.next/**',
+    'out/**',
+    'build/**',
+    'next-env.d.ts',
+  ]),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
