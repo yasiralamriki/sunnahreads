@@ -3,6 +3,8 @@ import config from '@payload-config';
 import HeroSection from '@/components/home/HeroSection';
 import SearchBar from '@/components/home/SearchBar';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   const payload = await getPayload({ config });
 

@@ -10,9 +10,11 @@ import {
 import { Icon } from 'lucide-react';
 import { featherText } from '@lucide/lab';
 
-const payload = await getPayload({ config });
+export const dynamic = 'force-dynamic';
 
 export default async function Books() {
+  const payload = await getPayload({ config });
+  
   const books = await payload.find({
     collection: 'books'
   });

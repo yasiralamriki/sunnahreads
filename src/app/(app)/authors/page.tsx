@@ -7,9 +7,11 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 
-const payload = await getPayload({ config });
+export const dynamic = 'force-dynamic';
 
 export default async function Authors() {
+  const payload = await getPayload({ config });
+  
   const authors = await payload.find({
     collection: 'authors'
   });
