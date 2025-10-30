@@ -14,6 +14,14 @@ import { Authors } from './collections/Authors';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+// Use regular postgres adapter for Supabase connection
+const databaseAdapter = postgresAdapter({
+  pool: {
+    connectionString: process.env.DATABASE_URI || '',
+  },
+});
+
+// Build config
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
   admin: {
@@ -28,15 +36,7 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URI || '',
-      max: 10,
-      idleTimeoutMillis: 30000,
-      connectionTimeoutMillis: 5000,
-    },
-    migrationDir: path.resolve(dirname, 'migrations'),
-  }),
+  db: databaseAdapter,
   sharp,
   plugins: [
     s3Storage({
