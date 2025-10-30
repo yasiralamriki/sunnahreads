@@ -34,6 +34,7 @@ export default function RootLayout({
           <div className='h-screen overflow-y-auto scrollbar scrollbar-thumb-amber-100 dark:scrollbar-thumb-amber-900 scrollbar-track-zinc-50 dark:scrollbar-track-zinc-950'>
             <Navbar />
             {children}
+            <SpeedInsights />
           </div>
         </ThemeProvider>
         <SpeedInsights />
