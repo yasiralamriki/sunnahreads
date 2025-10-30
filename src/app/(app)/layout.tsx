@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Rubik } from 'next/font/google';
 import { ThemeProvider } from '../../components/ThemeProvider';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 import Navbar from '@/components/navbar/Navbar';
  
 export const metadata: Metadata = {
@@ -37,6 +38,7 @@ export default function RootLayout({
           </div>
         </ThemeProvider>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
