@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   Command,
   CommandEmpty,
@@ -16,18 +16,33 @@ import type { Book, Author } from '@/payload-types';
 export default function SearchBar({ books, authors }: { books: Book[], authors: Author[] }) {
   const [isOpen, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  let filteredContent = [...books, ...authors];
+
+  function shuffle<T>(array: T[]): T[] {
+    const a = array.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  const combinedContent = useMemo(() => {
+    const list = [...books, ...authors];
+    // When there is no query, show a randomized list mixing books and authors
+    if (!searchQuery) return shuffle(list);
+
+    const filtered = list.filter((item) => {
+      if ('title' in item) {
+        return item.title.toLowerCase().includes(searchQuery.toLowerCase());
+      }
+      return item.name.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+
+    return shuffle(filtered);
+  }, [books, authors, searchQuery]);
 
   function handleSetSearchQuery(value: string) {
     setSearchQuery(value);
-
-    filteredContent = [...books, ...authors].filter((item) => {
-      if ('title' in item) {
-        return item.title.toLowerCase().includes(value.toLowerCase());
-      } else {
-        return item.name.toLowerCase().includes(value.toLowerCase());
-      }
-    });
   }
 
   return (
@@ -48,7 +63,7 @@ export default function SearchBar({ books, authors }: { books: Book[], authors: 
         <CommandList hidden={!isOpen} className='scrollbar-thumb-amber-500/60 scrollbar-track-amber-900/40 scrollbar-thin'>
           <CommandEmpty className='text-amber-300 text-center py-4'>No results found.</CommandEmpty>
           <CommandGroup heading='Search Results' className='[&_[cmdk-group-heading]]:!text-amber-300'>
-            {filteredContent.map((item) => (
+            {combinedContent.map((item) => (
               <CommandItem key={item.id} className='!bg-transparent hover:!bg-gradient-to-r hover:!from-amber-900/40 hover:!to-amber-900/40 active:!bg-amber-800/50 cursor-pointer'>
                 {'title' in item ? (
                   <a href={`/book/${item.id}`} className='flex items-center gap-2'>
