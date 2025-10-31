@@ -16,9 +16,13 @@ export default async function Home() {
     collection: 'authors'
   });
 
+  const readers = await payload.count({
+    collection: 'users'
+  });
+
   return (
     <div className='flex flex-col min-h-screen min-w-screen items-center px-8 lg:px-48'>
-      <HeroSection totalBooks={books.totalDocs} totalAuthors={authors.totalDocs} />
+      <HeroSection totalBooks={books.totalDocs} totalAuthors={authors.totalDocs} totalReaders={readers.totalDocs} />
       <SearchBar books={books.docs} authors={authors.docs} />
     </div>
   );
