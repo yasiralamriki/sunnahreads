@@ -20,7 +20,7 @@ export default function HeroSection({ totalBooks, totalAuthors, totalReaders }: 
           1000,
           `Over ${totalAuthors}+ authors`,
           1000,
-          `Join a community of ${totalReaders}+ readers`,
+          `Join a community of ${totalReaders ?? 0}+ readers`,
           1000,
           'Start your journey today',
           1000,
