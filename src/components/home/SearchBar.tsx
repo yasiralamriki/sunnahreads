@@ -49,7 +49,7 @@ export default function SearchBar({ books, authors }: { books: Book[], authors: 
           <CommandEmpty className='text-amber-300 text-center py-4'>No results found.</CommandEmpty>
           <CommandGroup heading='Search Results' className='[&_[cmdk-group-heading]]:!text-amber-300'>
             {filteredContent.map((item) => (
-              <CommandItem key={item.id} className='!bg-transparent hover:!bg-gradient-to-r hover:!from-amber-900/40 hover:!to-amber-900/40 active:!bg-amber-800/50 cursor-pointer'>
+              <CommandItem key={'title' in item ? item.title + item.id : item.name + item.id} className='!bg-transparent hover:!bg-gradient-to-r hover:!from-amber-900/40 hover:!to-amber-900/40 active:!bg-amber-800/50 cursor-pointer'>
                 {'title' in item ? (
                   <a href={`/book/${item.id}`} className='flex items-center gap-2'>
                     <BookIcon className='h-4 w-4 text-amber-400' />
