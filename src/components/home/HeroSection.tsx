@@ -5,9 +5,10 @@ import { TypeAnimation } from 'react-type-animation';
 interface HeroSectionProps {
   totalBooks: number;
   totalAuthors: number;
+  totalReaders?: number;
 }
 
-export default function HeroSection({ totalBooks, totalAuthors }: HeroSectionProps) {
+export default function HeroSection({ totalBooks, totalAuthors, totalReaders }: HeroSectionProps) {
   return (
     <div className='flex flex-col text-center'>
       <h1 className='text-4xl md:text-5xl text-amber-500 pt-16'>
@@ -19,7 +20,7 @@ export default function HeroSection({ totalBooks, totalAuthors }: HeroSectionPro
           1000,
           `Over ${totalAuthors}+ authors`,
           1000,
-          'Join a community of xxx+ readers',
+          `Join a community of ${totalReaders}+ readers`,
           1000,
           'Start your journey today',
           1000,
