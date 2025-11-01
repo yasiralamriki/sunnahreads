@@ -45,13 +45,20 @@ export default async function AuthorPage({params}: {params: {slug: string}}) {
         </BreadcrumbList>
       </Breadcrumb>
       <Card className='justify-stretch w-full h-full border-2 border-amber-400/30 bg-gradient-to-br from-amber-950/40 to-amber-950/20 shadow-lg'>
-        <CardContent className='flex flex-row gap-2'>
-          <Icon iconNode={featherText} className='h-4 w-4 text-amber-400' />
-          <CardTitle>
-            {typeof author === 'object' && author !== null
-              ? `${author.name}`
-              : 'Author information not available'}
-          </CardTitle>
+        <CardContent className='flex flex-col gap-2'>
+          <div className='flex flex-row items-center gap-2'>
+            <Icon iconNode={featherText} className='h-4 w-4 md:h-6 md:w-8 lg:h-8 lg:w-8 text-amber-400' />
+            <CardTitle className='text-md md:text-lg lg:text-2xl'>
+              {typeof author === 'object' && author !== null
+                ? `${author.name}`
+                : 'Author information not available'}
+            </CardTitle>
+          </div>
+          <p className='text-sm md:text-md'>
+            {typeof author === 'object' && author !== null && author.biography
+              ? author.biography
+              : 'No biography available for this author.'}
+          </p>
         </CardContent>
       </Card>
     </div>
