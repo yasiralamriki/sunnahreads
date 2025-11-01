@@ -68,7 +68,7 @@ export default async function BookPage({params}: {params: {slug: string}}) {
                 </div>
                 <div className='flex items-center gap-2'>
                   <BookCopy className='h-4 w-4 text-amber-400' />
-                  <p className='hover:text-amber-300 hover:underline'>
+                  <p>
                     {book.volumes ? `${book.volumes} Volume${book.volumes > 1 ? 's' : ''}` : 'Unknown Volumes'}
                   </p>
                 </div>
