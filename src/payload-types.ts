@@ -181,6 +181,7 @@ export interface Book {
 export interface Author {
   id: number;
   name: string;
+  biography?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -308,6 +309,7 @@ export interface BooksSelect<T extends boolean = true> {
  */
 export interface AuthorsSelect<T extends boolean = true> {
   name?: T;
+  biography?: T;
   updatedAt?: T;
   createdAt?: T;
 }
