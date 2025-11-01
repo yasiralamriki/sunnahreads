@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Icon } from 'lucide-react';
+import { BookCopy, Icon } from 'lucide-react';
 import { featherText } from '@lucide/lab';
 
 export const dynamic = 'force-dynamic';
@@ -35,13 +35,21 @@ export default async function Books() {
                   className='object-contain h-[250px] rounded-lg mx-auto'
                 />
               </CardContent>
-              <CardFooter className='gap-2'>
-                <Icon iconNode={featherText} className='h-4 w-4 text-amber-400' />
-                <a href={`/author/${typeof book.author === 'object' && book.author !== null && 'id' in book.author ? book.author.id : '#'}`} className='hover:text-amber-300 hover:underline'>
-                  {typeof book.author === 'object' && book.author !== null
-                    ? `${book.author.name}`
-                    : 'Author information not available'}
-                </a>
+              <CardFooter className='flex flex-col gap-2 items-start'>
+                <div className='flex items-center gap-2'>
+                  <Icon iconNode={featherText} className='h-4 w-4 text-amber-400' />
+                  <a href={`/author/${typeof book.author === 'object' && book.author !== null && 'id' in book.author ? book.author.id : '#'}`} className='hover:text-amber-300 hover:underline'>
+                    {typeof book.author === 'object' && book.author !== null
+                      ? `${book.author.name}`
+                      : 'Author information not available'}
+                  </a>
+                </div>
+                <div className='flex items-center gap-2'>
+                  <BookCopy className='h-4 w-4 text-amber-400' />
+                  <p>
+                    {book.volumes ? `${book.volumes} Volume${book.volumes > 1 ? 's' : ''}` : 'Unknown Volumes'}
+                  </p>
+                </div>
               </CardFooter>
             </Card>
           </a>

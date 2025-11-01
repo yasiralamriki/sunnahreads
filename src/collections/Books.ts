@@ -28,6 +28,11 @@ export const Books: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
       required: false
+    },
+    {
+      name: 'volumes',
+      type: 'number',
+      required: false,
     }
   ]
 };
