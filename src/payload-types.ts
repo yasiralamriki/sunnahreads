@@ -170,6 +170,7 @@ export interface Book {
   title: string;
   author: number | Author;
   image?: (number | null) | Media;
+  volumes?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -297,6 +298,7 @@ export interface BooksSelect<T extends boolean = true> {
   title?: T;
   author?: T;
   image?: T;
+  volumes?: T;
   updatedAt?: T;
   createdAt?: T;
 }
