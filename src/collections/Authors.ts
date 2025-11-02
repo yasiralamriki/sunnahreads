@@ -21,6 +21,11 @@ export const Authors: CollectionConfig = {
       name: 'biography',
       type: 'textarea',
       required: false,
+    },
+    {
+      name: 'deathDate',
+      type: 'number',
+      required: false,
     }
   ]
 };

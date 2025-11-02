@@ -27,7 +27,7 @@ export const Books: CollectionConfig = {
       name: 'image',
       type: 'upload',
       relationTo: 'media',
-      required: false
+      required: false,
     },
     {
       name: 'volumes',

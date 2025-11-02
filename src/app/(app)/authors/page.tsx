@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Calendar } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
@@ -26,7 +27,12 @@ export default async function Authors() {
                 <CardTitle>{author.name}</CardTitle>
               </CardHeader>
               <CardFooter>
-                <p>Details Placeholder</p>
+                <div className='flex items-center gap-2'>
+                  <Calendar className='h-4 w-4 text-amber-400' />
+                  <p>
+                    {author.deathDate ? author.deathDate : 'Unknown Death Date'}
+                  </p>
+                </div>
               </CardFooter>
             </Card>
           </a>
