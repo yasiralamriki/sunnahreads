@@ -2,6 +2,9 @@ import type { CollectionConfig } from 'payload';
 
 export const Authors: CollectionConfig = {
   slug: 'authors',
+  admin: {
+    useAsTitle: 'name',
+  },
   access: {
     read: () => true,
     create: ({ req: { user } }) => user?.role === 'admin',
@@ -20,6 +23,11 @@ export const Authors: CollectionConfig = {
     {
       name: 'biography',
       type: 'textarea',
+      required: false,
+    },
+    {
+      name: 'deathDate',
+      type: 'number',
       required: false,
     }
   ]
