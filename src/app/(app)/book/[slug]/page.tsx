@@ -62,7 +62,7 @@ export default async function BookPage({params}: {params: {slug: string}}) {
                   <Icon iconNode={featherText} className='h-4 w-4 text-amber-400' />
                   <a href={`/author/${typeof book.author === 'object' && book.author !== null && 'id' in book.author ? book.author.id : '#'}`} className='hover:text-amber-300 hover:underline'>
                     {typeof book.author === 'object' && book.author !== null
-                      ? `${book.author.name}`
+                      ? `${book.author.displayName}`
                       : 'Author information not available'}
                   </a>
                 </div>

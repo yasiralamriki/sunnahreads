@@ -39,7 +39,7 @@ export default async function AuthorPage({params}: {params: {slug: string}}) {
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbPage className='text-amber-500'>
-              {author.name}
+              {author.displayName}
             </BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
@@ -50,7 +50,7 @@ export default async function AuthorPage({params}: {params: {slug: string}}) {
             <Icon iconNode={featherText} className='h-4 w-4 md:h-6 md:w-6 lg:h-8 lg:w-8 text-amber-400' />
             <CardTitle className='text-md md:text-lg lg:text-2xl'>
               {typeof author === 'object' && author !== null
-                ? `${author.name}`
+                ? `${author.displayName}`
                 : 'Author information not available'}
             </CardTitle>
           </div>

@@ -21,6 +21,21 @@ export const Authors: CollectionConfig = {
       required: true,
     },
     {
+      name: 'displayName',
+      type: 'text',
+      admin: {
+        readOnly: true,
+      },
+      hooks: {
+        afterRead: [
+          ({ siblingData }) => {
+            // Compute display name on read for all items (existing and new)
+            return siblingData.name && siblingData.deathDate ? `${siblingData.name} (d. ${siblingData.deathDate}) رحمه الله` : `${siblingData.name} حفظه الله`;
+          }
+        ]
+      }
+    },
+    {
       name: 'biography',
       type: 'textarea',
       required: false,
