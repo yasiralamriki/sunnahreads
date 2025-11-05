@@ -24,13 +24,13 @@ export default async function Authors() {
           <a href={`/author/${author.id}`} key={author.id}>
             <Card className='border-2 border-amber-400/30 bg-gradient-to-br from-amber-950/40 to-amber-950/20 shadow-lg hover:scale-[1.02] transition-transform h-full'>
               <CardHeader>
-                <CardTitle>{author.name}</CardTitle>
+                <CardTitle>{author.displayName}</CardTitle>
               </CardHeader>
               <CardFooter>
                 <div className='flex items-center gap-2'>
                   <Calendar className='h-4 w-4 text-amber-400' />
                   <p>
-                    {author.deathDate ? author.deathDate : 'Unknown Death Date'}
+                    {author.deathDate ? `Died ${author.deathDate} (Hijri)` : 'Unknown Death Date'}
                   </p>
                 </div>
               </CardFooter>

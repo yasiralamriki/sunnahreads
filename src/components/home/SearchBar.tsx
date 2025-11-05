@@ -58,7 +58,7 @@ export default function SearchBar({ books, authors }: { books: Book[], authors: 
                 ) : (
                   <a href={`/author/${item.id}`} className='flex items-center gap-2'>
                     <Icon iconNode={featherText} className='h-4 w-4 text-amber-400' />
-                    <span>{item.name}</span>
+                    <span>{item.displayName}</span>
                   </a>
                 )}
               </CommandItem>
