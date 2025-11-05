@@ -21,7 +21,7 @@ const databaseAdapter = postgresAdapter({
     connectionString: process.env.DATABASE_URI || '',
   },
   migrationDir: path.resolve(dirname, '../migrations'),
-  push: process.env.NODE_ENV !== 'production', // Auto-push in dev, manual in production
+  push: process.env.NODE_ENV !== 'production', // Automatically sync schema in development, require migrations in production
 });
 
 // Build config
