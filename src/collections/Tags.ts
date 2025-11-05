@@ -8,10 +8,7 @@ export const Tags: CollectionConfig = {
   access: {
     read: () => true,
     create: ({ req: { user } }) => user?.role === 'admin',
-    update: ({ req: { user }, id }) => {
-      if (user?.role === 'admin') return true;
-      return user?.id === id;
-    },
+    update: ({ req: { user } }) => user?.role === 'admin',
     delete: ({ req: { user } }) => user?.role === 'admin',
   },
   fields: [
