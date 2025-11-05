@@ -30,7 +30,8 @@ export const Authors: CollectionConfig = {
         afterRead: [
           ({ siblingData }) => {
             // Compute display name on read for all items (existing and new)
-            return siblingData.name && siblingData.deathDate ? `${siblingData.name} (d. ${siblingData.deathDate}) رحمه الله` : `${siblingData.name} حفظه الله`;
+            const name = siblingData.name ?? 'Unknown';
+            return name && siblingData.deathDate ? `${name} (d. ${siblingData.deathDate}) رحمه الله` : `${name} حفظه الله`;
           }
         ]
       }
