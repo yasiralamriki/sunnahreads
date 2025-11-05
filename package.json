@@ -5,9 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "payload migrate && next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "payload": "payload",
+    "generate:types": "payload generate:types",
+    "migrate:create": "payload migrate:create",
+    "migrate": "payload migrate",
+    "migrate:status": "payload migrate:status"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.913.0",

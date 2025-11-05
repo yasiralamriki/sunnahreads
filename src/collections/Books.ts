@@ -33,6 +33,13 @@ export const Books: CollectionConfig = {
       name: 'volumes',
       type: 'number',
       required: false,
+    },
+    {
+      name: 'tags',
+      type: 'relationship',
+      relationTo: 'tags',
+      hasMany: true,
+      required: false,
     }
   ]
 };
