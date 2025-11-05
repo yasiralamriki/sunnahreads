@@ -54,7 +54,11 @@ export default async function Books() {
                 {book.tags && book.tags.length > 0 && (
                   <div className='flex flex-wrap gap-2'>
                     {book.tags.map((tag) => (
-                      <Badge variant='default' className='bg-amber-400/10 text-amber-400 rounded-full px-2 py-1 text-sm'>
+                      <Badge
+                        key={typeof tag === 'object' && tag !== null && 'id' in tag ? tag.id : tag}
+                        variant='default'
+                        className='bg-amber-400/10 text-amber-400 rounded-full px-2 py-1 text-sm'
+                      >
                         {typeof tag === 'object' && tag !== null && 'name' in tag ? tag.name : 'Unknown Tag'}
                       </Badge>
                     ))}
