@@ -10,6 +10,7 @@ import { Users } from './collections/Users';
 import { Media } from './collections/Media';
 import { Books } from './collections/Books';
 import { Authors } from './collections/Authors';
+import { Tags } from './collections/Tags';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -19,6 +20,8 @@ const databaseAdapter = postgresAdapter({
   pool: {
     connectionString: process.env.DATABASE_URI || '',
   },
+  migrationDir: path.resolve(dirname, '../migrations'),
+  push: process.env.NODE_ENV !== 'production', // Auto-push in dev, manual in production
 });
 
 // Build config
@@ -30,7 +33,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Books, Authors],
+  collections: [Users, Media, Books, Authors, Tags],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

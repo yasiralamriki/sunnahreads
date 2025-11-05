@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Badge } from "@/components/ui/badge"
 import { BookCopy, Icon } from 'lucide-react';
 import { featherText } from '@lucide/lab';
 
@@ -50,6 +51,19 @@ export default async function Books() {
                     {book.volumes ? `${book.volumes} Volume${book.volumes > 1 ? 's' : ''}` : 'Unknown Volumes'}
                   </p>
                 </div>
+                {book.tags && book.tags.length > 0 && (
+                  <div className='flex flex-wrap gap-2'>
+                    {book.tags.map((tag) => (
+                      <Badge
+                        key={typeof tag === 'object' && tag !== null && 'id' in tag ? tag.id : tag}
+                        variant='default'
+                        className='bg-amber-400/10 text-amber-400 rounded-full px-2 py-1 text-sm'
+                      >
+                        {typeof tag === 'object' && tag !== null && 'name' in tag ? tag.name : 'Unknown Tag'}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
               </CardFooter>
             </Card>
           </a>
