@@ -1,5 +1,0 @@
-# Migrations
-
-This directory contains database migrations for Payload CMS.
-
-Migrations are automatically run during the build process on Vercel.
