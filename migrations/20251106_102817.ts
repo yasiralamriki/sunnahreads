@@ -2,11 +2,7 @@ import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
-   DO $$ BEGIN
-    CREATE TYPE "public"."enum_users_role" AS ENUM('admin', 'editor', 'user');
-   EXCEPTION
-    WHEN duplicate_object THEN null;
-   END $$;
+   CREATE TYPE "public"."enum_users_role" AS ENUM('admin', 'editor', 'user');
   CREATE TABLE "users_sessions" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -192,5 +188,5 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "payload_preferences" CASCADE;
   DROP TABLE "payload_preferences_rels" CASCADE;
   DROP TABLE "payload_migrations" CASCADE;
-  DROP TYPE IF EXISTS "public"."enum_users_role";`)
+  DROP TYPE "public"."enum_users_role";`)
 }

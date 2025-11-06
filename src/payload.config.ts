@@ -11,8 +11,7 @@ import { Media } from './collections/Media';
 import { Books } from './collections/Books';
 import { Authors } from './collections/Authors';
 import { Tags } from './collections/Tags';
-
-import { migrations } from '../migrations/index.js';
+import { migrations } from '../migrations';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -24,7 +23,7 @@ const databaseAdapter = postgresAdapter({
   },
   prodMigrations: migrations,
   migrationDir: path.resolve(dirname, '../migrations'),
-  push: process.env.NODE_ENV !== 'production', // Automatically sync schema in development, require migrations in production
+  push: process.env.NODE_ENV !== 'production',
 });
 
 // Build config
