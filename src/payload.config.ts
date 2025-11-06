@@ -21,8 +21,11 @@ const databaseAdapter = postgresAdapter({
   pool: {
     connectionString: process.env.DATABASE_URI || '',
   },
-  prodMigrations: migrations,
-  migrationDir: path.resolve(dirname, '../migrations'),
+  // Only include migrations in production
+  ...(process.env.NODE_ENV === 'production' && {
+    prodMigrations: migrations,
+    migrationDir: path.resolve(dirname, '../migrations'),
+  }),
   push: process.env.NODE_ENV !== 'production',
 });
 
