@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "payload migrate && next build",
+    "build": "next build",
+    "build:prod": "payload migrate && next build",
     "start": "next start",
     "lint": "eslint .",
     "payload": "payload",
