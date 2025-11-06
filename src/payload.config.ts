@@ -16,17 +16,27 @@ import { migrations } from '../migrations';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+// Determine if we should run migrations
+// On Vercel: only run on production branch (VERCEL_ENV === 'production')
+// Locally: only run if NODE_ENV === 'production'
+const isProduction = process.env.VERCEL_ENV 
+  ? process.env.VERCEL_ENV === 'production'  // On Vercel, check VERCEL_ENV
+  : process.env.NODE_ENV === 'production';   // Locally, check NODE_ENV
+
 // Use regular postgres adapter for Supabase connection
 const databaseAdapter = postgresAdapter({
   pool: {
     connectionString: process.env.DATABASE_URI || '',
   },
-  // Only include migrations in production
-  ...(process.env.NODE_ENV === 'production' && {
+  // Only run migrations on Vercel production (not preview/dev branches)
+  // VERCEL_ENV is 'production' only for production deployments
+  // VERCEL_ENV is 'preview' for branch deployments like dev
+  ...(process.env.VERCEL_ENV === 'production' && {
     prodMigrations: migrations,
     migrationDir: path.resolve(dirname, '../migrations'),
   }),
-  push: process.env.NODE_ENV !== 'production',
+  // Use push (auto-sync) for development
+  push: !isProduction,
 });
 
 // Build config
