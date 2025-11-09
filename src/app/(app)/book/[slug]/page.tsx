@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/breadcrumb';
 import { BookCopy, Icon } from 'lucide-react';
 import { featherText } from '@lucide/lab';
+import { Badge } from '@/components/ui/badge';
 
 export const dynamic = 'force-dynamic';
 
@@ -48,30 +49,43 @@ export default async function BookPage({params}: {params: {slug: string}}) {
       </Breadcrumb>
       <Card className='justify-stretch w-full h-full border-2 border-amber-400/30 bg-gradient-to-br from-amber-950/40 to-amber-950/20 shadow-lg'>
         <CardHeader className='items-start'>
+          <CardTitle>{book.title}</CardTitle>
+        </CardHeader>
+        <CardContent>
           <img 
             src={book.image && typeof book.image === 'object' && 'url' in book.image && book.image.url ? book.image.url : '/placeholder.jpg'}
             alt={book.image && typeof book.image === 'object' && 'alt' in book.image && book.image.alt ? book.image.alt : 'Book Cover'} 
             className='h-auto max-h-96 object-contain'
           />
-        </CardHeader>
-        <CardContent>
-          <CardTitle>{book.title}</CardTitle>
         </CardContent>
         <CardFooter className='flex flex-col gap-2 items-start'>
-                <div className='flex items-center gap-2'>
-                  <Icon iconNode={featherText} className='h-4 w-4 text-amber-400' />
-                  <a href={`/author/${typeof book.author === 'object' && book.author !== null && 'id' in book.author ? book.author.id : '#'}`} className='hover:text-amber-300 hover:underline'>
-                    {typeof book.author === 'object' && book.author !== null
-                      ? `${book.author.displayName}`
-                      : 'Author information not available'}
-                  </a>
-                </div>
-                <div className='flex items-center gap-2'>
-                  <BookCopy className='h-4 w-4 text-amber-400' />
-                  <p>
-                    {book.volumes ? `${book.volumes} Volume${book.volumes > 1 ? 's' : ''}` : 'Unknown Volumes'}
-                  </p>
-                </div>
+          <div className='flex items-center gap-2'>
+            <Icon iconNode={featherText} className='h-4 w-4 text-amber-400' />
+            <a href={`/author/${typeof book.author === 'object' && book.author !== null && 'id' in book.author ? book.author.id : '#'}`} className='hover:text-amber-300 hover:underline'>
+              {typeof book.author === 'object' && book.author !== null
+                ? `${book.author.displayName}`
+                : 'Author information not available'}
+            </a>
+          </div>
+          <div className='flex items-center gap-2'>
+            <BookCopy className='h-4 w-4 text-amber-400' />
+            <p>
+              {book.volumes ? `${book.volumes} Volume${book.volumes > 1 ? 's' : ''}` : 'Unknown Volumes'}
+            </p>
+          </div>
+          {book.tags && book.tags.length > 0 && (
+            <div className='flex flex-wrap gap-2'>
+              {book.tags.map((tag) => (
+                <Badge
+                  key={typeof tag === 'object' && tag !== null && 'id' in tag ? tag.id : tag}
+                  variant='default'
+                  className='bg-amber-400/10 text-amber-400 rounded-full px-2 py-1 text-sm'
+                >
+                  {typeof tag === 'object' && tag !== null && 'name' in tag ? tag.name : 'Unknown Tag'}
+                </Badge>
+              ))}
+            </div>
+          )}
         </CardFooter>
       </Card>
     </div>
