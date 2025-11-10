@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={rubik.className} suppressHydrationWarning={true}>
+    <html lang="en" className={rubik.className}>
       <head>
         <link rel="icon" type="image/svg+xml" href="/logo.svg" />
       </head>
