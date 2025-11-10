@@ -24,10 +24,11 @@ export const dynamic = 'force-dynamic';
 
 export default async function BookPage({params}: {params: {slug: string}}) {
   const payload = await getPayload({ config });
+  const { slug } = await params;
   
   const book = await payload.findByID({
     collection: 'books',
-    id: params.slug
+    id: slug
   });
 
   return (
