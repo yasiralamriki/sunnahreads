@@ -34,7 +34,10 @@ export default function SearchBar({ books, authors }: { books: Book[], authors: 
     <div className='pt-8 w-full'>
       <Command 
         onFocus={() => setOpen(true)}
-        onBlur={() => setOpen(false)}
+        onBlur={() => {
+          // Delay closing to allow click events to fire
+          setTimeout(() => setOpen(false), 200);
+        }}
         className={`rounded-lg border-2 border-amber-400/30 bg-gradient-to-br from-amber-950/40 to-amber-950/20 shadow-xl max-w-full [&_svg[class*="opacity-50"]]:!text-amber-300 [&_svg[class*="opacity-50"]]:!w-6 [&_svg[class*="opacity-50"]]:!h-6 [&_svg[class*="opacity-50"]]:!opacity-100 [&_[data-slot="command-input-wrapper"]]:!h-auto [&_[data-slot="command-input-wrapper"]]:py-4 ${isOpen ? '[&_[data-slot="command-input-wrapper"]]:border-b [&_[data-slot="command-input-wrapper"]]:border-amber-400/30' : '[&_[data-slot="command-input-wrapper"]]:border-b-0'}`}
       >
         <CommandInput
@@ -49,7 +52,11 @@ export default function SearchBar({ books, authors }: { books: Book[], authors: 
           <CommandEmpty className='text-amber-300 text-center py-4'>No results found.</CommandEmpty>
           <CommandGroup heading='Search Results' className='[&_[cmdk-group-heading]]:!text-amber-300'>
             {filteredContent.map((item) => (
-              <CommandItem key={'title' in item ? `book-${item.id}` : `author-${item.id}`} className='!bg-transparent hover:!bg-gradient-to-r hover:!from-amber-900/40 hover:!to-amber-900/40 active:!bg-amber-800/50 cursor-pointer'>
+              <CommandItem 
+                key={'title' in item ? `book-${item.id}` : `author-${item.id}`} 
+                className='!bg-transparent hover:!bg-gradient-to-r hover:!from-amber-900/40 hover:!to-amber-900/40 active:!bg-amber-800/50 cursor-pointer'
+                onMouseDown={(e) => e.preventDefault()} // Prevent blur from firing
+              >
                 {'title' in item ? (
                   <a href={`/book/${item.id}`} className='flex items-center gap-2'>
                     <BookIcon className='h-4 w-4 text-amber-400' />
