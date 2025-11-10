@@ -10,6 +10,7 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { BookCopy, Icon } from 'lucide-react';
 import { featherText } from '@lucide/lab';
+import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 
@@ -39,11 +40,15 @@ export default async function Books() {
               <CardFooter className='flex flex-col gap-2 items-start'>
                 <div className='flex items-center gap-2'>
                   <Icon iconNode={featherText} className='h-4 w-4 text-amber-400' />
-                  <p href={`/author/${typeof book.author === 'object' && book.author !== null && 'id' in book.author ? book.author.id : '#'}`} className='hover:text-amber-300 hover:underline'>
-                    {typeof book.author === 'object' && book.author !== null
-                      ? `${book.author.displayName}`
-                      : 'Author information not available'}
-                  </p>
+                  <Link 
+                    href={`/author/${typeof book.author === 'object' && book.author !== null && 'id' in book.author ? book.author.id : '#'}`}
+                    className='hover:text-amber-300 hover:underline'
+                    suppressHydrationWarning
+                  >
+                      {typeof book.author === 'object' && book.author !== null
+                        ? `${book.author.displayName}`
+                        : 'Author information not available'}
+                  </Link>
                 </div>
                 <div className='flex items-center gap-2'>
                   <BookCopy className='h-4 w-4 text-amber-400' />
