@@ -31,7 +31,7 @@ export default function SearchBar({ books, authors }: { books: Book[], authors: 
   }
 
   return (
-    <div className='pt-8 w-full'>
+    <div className='w-full'>
       <Command 
         onFocus={() => setOpen(true)}
         onBlur={() => {
