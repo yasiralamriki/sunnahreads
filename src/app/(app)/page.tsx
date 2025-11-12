@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card"
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookCopy, Icon } from 'lucide-react';
+import { BookCopy, Calendar, Icon } from 'lucide-react';
 import { featherText } from '@lucide/lab';
 import Link from 'next/link';
 
@@ -38,7 +38,7 @@ export default async function Home() {
         <HeroSection totalBooks={books.totalDocs} totalAuthors={authors.totalDocs} totalReaders={readers.totalDocs} />
         <SearchBar books={books.docs} authors={authors.docs} />
       </div>
-      <Card className='flex w-full mb-32 rounded-lg border-2 border-amber-400/30 bg-gradient-to-br from-amber-950/40 to-amber-950/20 shadow-xl max-w-full gap-2'>
+      <Card className='flex w-full rounded-lg border-2 border-amber-400/30 bg-gradient-to-br from-amber-950/40 to-amber-950/20 shadow-xl max-w-full gap-2'>
         <CardHeader className='text-center min-[500px]:text-left'>
           <CardTitle className='text-xl'>Books</CardTitle>
         </CardHeader>
@@ -50,7 +50,7 @@ export default async function Home() {
               <TabsTrigger value="mostfavorited" className="cursor-pointer data-[state=active]:!bg-amber-900/40 data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-white">Most Favorited</TabsTrigger>
             </TabsList>
             <TabsContent value="mostrecent" className='grid grid-cols-1 min-[500px]:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 mt-0'>
-              {books.docs.slice(0, 5).map((book) => (
+              {books.docs.slice(0, 10).map((book) => (
                 <a key={book.id} href={`/book/${book.id}`} className='cursor-pointer no-underline'>
                   <Card className='border-2 border-amber-400/30 bg-gradient-to-br from-amber-950/40 to-amber-950/20 shadow-lg hover:scale-[1.02] transition-transform h-full justify-between'>
                     <CardHeader>
@@ -95,6 +95,39 @@ export default async function Home() {
                           ))}
                         </div>
                       )}
+                    </CardFooter>
+                  </Card>
+                </a>
+              ))}
+            </TabsContent>
+          </Tabs>
+        </CardContent>
+      </Card>
+      <Card className='flex w-full mb-32 rounded-lg border-2 border-amber-400/30 bg-gradient-to-br from-amber-950/40 to-amber-950/20 shadow-xl max-w-full gap-2'>
+        <CardHeader className='text-center min-[500px]:text-left'>
+          <CardTitle className='text-xl'>Authors</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Tabs defaultValue="mostrecent" className='flex flex-col gap-6 w-full items-center min-[500px]:items-baseline'>
+            <TabsList className='flex flex-col min-[450px]:flex-row bg-amber-900/40 border border-amber-400/30 w-fit h-fit'>
+              <TabsTrigger value="mostrecent" className="cursor-pointer data-[state=active]:!bg-amber-900/40 data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-white">Most Recent</TabsTrigger>
+              <TabsTrigger value="placeholder1" className="cursor-pointer data-[state=active]:!bg-amber-900/40 data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-white">Placeholder</TabsTrigger>
+              <TabsTrigger value="placeholder2" className="cursor-pointer data-[state=active]:!bg-amber-900/40 data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-white">Placeholder</TabsTrigger>
+            </TabsList>
+            <TabsContent value="mostrecent" className='grid grid-cols-1 min-[500px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 mt-0'>
+              {authors.docs.slice(0, 10).map((author) => (
+                <a key={author.id} href={`/author/${author.id}`} className='cursor-pointer no-underline'>
+                  <Card className='border-2 border-amber-400/30 bg-gradient-to-br from-amber-950/40 to-amber-950/20 shadow-lg hover:scale-[1.02] transition-transform h-full justify-between'>
+                    <CardHeader>
+                      <CardTitle>{author.displayName}</CardTitle>
+                    </CardHeader>
+                    <CardFooter className='flex flex-col gap-2 items-start'>
+                      <div className='flex items-center gap-2'>
+                        <Calendar className='h-4 w-4 text-amber-400' />
+                        <p>
+                          {author.deathDate ? `Died ${author.deathDate} (Hijri)` : 'Unknown Death Date'}
+                        </p>
+                      </div>
                     </CardFooter>
                   </Card>
                 </a>
