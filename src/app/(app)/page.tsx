@@ -8,9 +8,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { BookCopy, Calendar, Icon } from 'lucide-react';
 import { featherText } from '@lucide/lab';
 import Link from 'next/link';
@@ -49,10 +49,11 @@ export default async function Home() {
               <TabsTrigger value="mostviewed" className="cursor-pointer data-[state=active]:!bg-amber-900/40 data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-white">Most Viewed</TabsTrigger>
               <TabsTrigger value="mostfavorited" className="cursor-pointer data-[state=active]:!bg-amber-900/40 data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-white">Most Favorited</TabsTrigger>
             </TabsList>
-            <TabsContent value="mostrecent" className='grid grid-cols-1 min-[500px]:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 mt-0'>
-              {books.docs.slice(0, 10).map((book) => (
-                <a key={book.id} href={`/book/${book.id}`} className='cursor-pointer no-underline'>
-                  <Card className='border-2 border-amber-400/30 bg-gradient-to-br from-amber-950/40 to-amber-950/20 shadow-lg hover:scale-[1.02] transition-transform h-full justify-between'>
+            <TabsContent value="mostrecent" className='w-full overflow-x-auto overflow-y-hidden scrollbar scrollbar-thumb-amber-100 dark:scrollbar-thumb-amber-900 scrollbar-track-zinc-50 dark:scrollbar-track-zinc-950 mt-0'>
+              <div className='flex flex-col gap-4 min-[450px]:flex min-[450px]:flex-row min-[450px]:flex-nowrap'>
+              {books.docs.slice(0, 10).map((book, index) => (
+                <a key={book.id} href={`/book/${book.id}`} className={`cursor-pointer no-underline flex ${index >= 3 ? 'hidden min-[450px]:flex' : ''}`}>
+                    <Card className='border-2 border-amber-400/30 bg-gradient-to-br from-amber-950/40 to-amber-950/20 shadow-lg hover:scale-[1.02] transition-transform w-[280px] h-full flex flex-col justify-between'>
                     <CardHeader>
                       <CardTitle>{book.title}</CardTitle>
                     </CardHeader>
@@ -99,6 +100,7 @@ export default async function Home() {
                   </Card>
                 </a>
               ))}
+              </div>
             </TabsContent>
           </Tabs>
         </CardContent>
@@ -114,10 +116,11 @@ export default async function Home() {
               <TabsTrigger value="placeholder1" className="cursor-pointer data-[state=active]:!bg-amber-900/40 data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-white">Placeholder</TabsTrigger>
               <TabsTrigger value="placeholder2" className="cursor-pointer data-[state=active]:!bg-amber-900/40 data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-white">Placeholder</TabsTrigger>
             </TabsList>
-            <TabsContent value="mostrecent" className='grid grid-cols-1 min-[500px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 mt-0'>
-              {authors.docs.slice(0, 10).map((author) => (
-                <a key={author.id} href={`/author/${author.id}`} className='cursor-pointer no-underline'>
-                  <Card className='border-2 border-amber-400/30 bg-gradient-to-br from-amber-950/40 to-amber-950/20 shadow-lg hover:scale-[1.02] transition-transform h-full justify-between'>
+            <TabsContent value="mostrecent" className='w-full overflow-x-auto overflow-y-hidden scrollbar scrollbar-thumb-amber-100 dark:scrollbar-thumb-amber-900 scrollbar-track-zinc-50 dark:scrollbar-track-zinc-950 mt-0'>
+              <div className='flex flex-col gap-4 min-[450px]:flex min-[450px]:flex-row min-[450px]:flex-nowrap'>
+              {authors.docs.slice(0, 10).map((author, index) => (
+                <a key={author.id} href={`/author/${author.id}`} className={`cursor-pointer no-underline flex ${index >= 3 ? 'hidden min-[450px]:flex' : ''}`}>
+                  <Card className='border-2 border-amber-400/30 bg-gradient-to-br from-amber-950/40 to-amber-950/20 shadow-lg hover:scale-[1.02] transition-transform w-[280px] min-[450px]:w-[220px] h-full flex flex-col justify-between'>
                     <CardHeader>
                       <CardTitle>{author.displayName}</CardTitle>
                     </CardHeader>
@@ -132,6 +135,7 @@ export default async function Home() {
                   </Card>
                 </a>
               ))}
+              </div>
             </TabsContent>
           </Tabs>
         </CardContent>
