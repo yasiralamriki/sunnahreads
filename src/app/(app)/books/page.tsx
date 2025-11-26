@@ -7,18 +7,30 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Badge } from "@/components/ui/badge"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from '@/components/ui/pagination';
+import { Badge } from '@/components/ui/badge';
 import { BookCopy, Icon } from 'lucide-react';
 import { featherText } from '@lucide/lab';
 import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 
-export default async function Books() {
+export default async function Books({ searchParams }: { searchParams: { page?: string } }) {
   const payload = await getPayload({ config });
+  const currentPage = Number(searchParams.page) || 1;
   
   const books = await payload.find({
-    collection: 'books'
+    collection: 'books',
+    page: currentPage,
+    limit: 10,
+    pagination: true
   });
 
   return (
@@ -73,6 +85,48 @@ export default async function Books() {
             </Card>
           </a>
         ))}
+      </div>
+      <div className='self-stretch pb-32'>
+        <Pagination className='text-amber-400'>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious 
+                className='hover:!bg-amber-400/10 hover:!text-amber-400 cursor-pointer' 
+                href={`?page=${currentPage === 1 ? 1 : currentPage - 1}`}
+              />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink 
+                className='hover:!bg-amber-400/10 hover:!text-amber-400 cursor-pointer'
+                href={`?page=${currentPage === 1 ? 1 : currentPage - 1}`}
+              >
+                {currentPage === 1 ? 1 : currentPage - 1}
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink 
+                className='hover:!bg-amber-400/10 hover:!text-amber-400 cursor-pointer'
+                href={`?page=${currentPage === 1 ? 2 : currentPage}`}
+              >
+                {currentPage === 1 ? 2 : currentPage}
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink 
+                className='hover:!bg-amber-400/10 hover:!text-amber-400 cursor-pointer'
+                href={`?page=${currentPage === 1 ? 3 : currentPage + 1}`}
+              >
+                {currentPage === 1 ? 3 : currentPage + 1}
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext 
+                className='hover:!bg-amber-400/10 hover:!text-amber-400 cursor-pointer' 
+                href={`?page=${currentPage + 1}`}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </div>
     </div>
   );
