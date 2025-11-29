@@ -48,7 +48,7 @@ export default async function BookPage({params}: {params: {slug: string}}) {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <Card className='justify-stretch w-full h-full border-2 border-amber-400/30 bg-gradient-to-br from-amber-950/40 to-amber-950/20 shadow-lg'>
+      <Card className='justify-stretch w-full h-full border-2 border-amber-600/30 dark:border-amber-400/30 bg-gradient-to-br from-amber-50/40 to-amber-50/20 dark:from-amber-950/40 dark:to-amber-950/20 shadow-lg'>
         <CardHeader className='items-start'>
           <CardTitle>{book.title}</CardTitle>
         </CardHeader>
