@@ -72,17 +72,17 @@ export default function Navbar() {
               <NavigationMenu className='flex flex-col justify-center items-center text-center w-full'>
                   <NavigationMenuList className="flex-col gap-4 w-full items-center">
                     <NavigationMenuItem className='w-full flex justify-center'>
-                      <NavigationMenuLink href='/' className={`px-4 py-2 text-2xl !text-zinc-50 !dark:text-zinc-950 hover:!bg-amber-950 hover:!text-amber-400 ${pathname === '/' ? '!text-amber-400' : ''}`}>
+                      <NavigationMenuLink href='/' className={`px-4 py-2 text-2xl text-zinc-950 dark:text-zinc-!950 hover:bg-amber-50 dark:hover:!bg-amber-950 hover:!text-amber-400  ${pathname === '/' ? '!text-amber-400' : ''}`}>
                         Home
                       </NavigationMenuLink>
                     </NavigationMenuItem>
                     <NavigationMenuItem className='w-full flex justify-center'>
-                      <NavigationMenuLink href='/books' className={`px-4 py-2 text-2xl !text-zinc-50 !dark:text-zinc-950 hover:!bg-amber-950 hover:!text-amber-400 ${pathname.startsWith('/book') ? '!text-amber-400' : ''}`}>
+                      <NavigationMenuLink href='/books' className={`px-4 py-2 text-2xl text-zinc-950 dark:text-zinc-50 hover:bg-amber-50 dark:hover:!bg-amber-950 hover:!text-amber-400 ${pathname.startsWith('/book') ? '!text-amber-400' : ''}`}>
                         Books
                       </NavigationMenuLink>
                     </NavigationMenuItem>
                     <NavigationMenuItem className='w-full flex justify-center'>
-                      <NavigationMenuLink href='/authors' className={`px-4 py-2 text-2xl !text-zinc-50 !dark:text-zinc-950 hover:!bg-amber-950 hover:!text-amber-400 ${pathname.startsWith('/author') ? '!text-amber-400' : ''}`}>
+                      <NavigationMenuLink href='/authors' className={`px-4 py-2 text-2xl text-zinc-950 dark:text-zinc-50 hover:bg-amber-50 dark:hover:!bg-amber-950 hover:!text-amber-400 ${pathname.startsWith('/author') ? '!text-amber-400' : ''}`}>
                         Authors
                       </NavigationMenuLink>
                     </NavigationMenuItem>
