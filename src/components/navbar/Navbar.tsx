@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { ModeToggle } from './ModeToggle';
 import { BookOpenText, Menu } from 'lucide-react';
 import React from 'react';
 import { usePathname } from 'next/navigation';
@@ -55,9 +56,9 @@ export default function Navbar() {
               </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
-          <div className='flex flex-row items-center justify-center text-center gap-4 ml-8'>
+          <div className='flex flex-row items-center justify-center text-center gap-8 ml-4'>
             <Separator orientation='vertical' className='!h-6'/>
-            Language Placeholder
+            <ModeToggle />
           </div>
         </NavigationMenu>
         <div className='lg:hidden'>
@@ -86,9 +87,9 @@ export default function Navbar() {
                       </NavigationMenuLink>
                     </NavigationMenuItem>
                   </NavigationMenuList>
-                  <div className='flex flex-col items-center justify-center text-center gap-4 mt-8'>
+                  <div className='flex flex-col items-center justify-center text-center gap-8 mt-4'>
                     <Separator orientation='horizontal' className='!w-6'/>
-                    Language Placeholder
+                    <ModeToggle />
                   </div>
                 </NavigationMenu>
             </SheetContent>
