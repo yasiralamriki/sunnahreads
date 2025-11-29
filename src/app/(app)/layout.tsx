@@ -30,7 +30,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className='h-screen overflow-y-auto scrollbar scrollbar-thumb-amber-100 dark:scrollbar-thumb-amber-900 scrollbar-track-zinc-50 dark:scrollbar-track-zinc-950'>
+          <div className='h-screen overflow-y-auto scrollbar scrollbar-thumb-amber-100 dark:scrollbar-thumb-amber-900 scrollbar-track-zinc-50 dark:scrollbar-track-zinc-950 bg-zinc-50 dark:bg-zinc-950'>
             <Navbar />
             {children}
           </div>

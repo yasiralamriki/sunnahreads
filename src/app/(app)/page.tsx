@@ -38,22 +38,22 @@ export default async function Home() {
         <HeroSection totalBooks={books.totalDocs} totalAuthors={authors.totalDocs} totalReaders={readers.totalDocs} />
         <SearchBar books={books.docs} authors={authors.docs} />
       </div>
-      <Card className='flex w-full rounded-lg border-2 border-amber-400/30 bg-gradient-to-br from-amber-950/40 to-amber-950/20 shadow-xl max-w-full gap-2'>
+      <Card className='flex w-full rounded-lg border-2 border-amber-600/30 dark:border-amber-400/30 bg-gradient-to-br from-amber-50/40 to-amber-50/20 dark:from-amber-950/40 dark:to-amber-950/20 shadow-xl max-w-full gap-2'>
         <CardHeader className='text-center min-[500px]:text-left'>
           <CardTitle className='text-xl'>Books</CardTitle>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="mostrecent" className='flex flex-col gap-6 w-full items-center min-[500px]:items-baseline'>
-            <TabsList className='flex flex-col min-[450px]:flex-row bg-amber-900/40 border border-amber-400/30 w-fit h-fit'>
-              <TabsTrigger value="mostrecent" className="cursor-pointer data-[state=active]:!bg-amber-900/40 data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-white">Most Recent</TabsTrigger>
-              <TabsTrigger value="mostviewed" className="cursor-pointer data-[state=active]:!bg-amber-900/40 data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-white">Most Viewed</TabsTrigger>
-              <TabsTrigger value="mostfavorited" className="cursor-pointer data-[state=active]:!bg-amber-900/40 data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-white">Most Favorited</TabsTrigger>
+            <TabsList className='flex flex-col min-[450px]:flex-row bg-amber-100/40 border-amber-600/30 dark:bg-amber-900/40 border dark:border-amber-400/30 w-fit h-fit'>
+              <TabsTrigger value="mostrecent" className="cursor-pointer data-[state=active]:!bg-amber-100/40 data-[state=active]:!border-amber-600/40 dark:data-[state=active]:!bg-amber-900/40 dark:data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-black dark:!text-white">Most Recent</TabsTrigger>
+              <TabsTrigger value="mostviewed" className="cursor-pointer data-[state=active]:!bg-amber-100/40 data-[state=active]:!border-amber-600/40 dark:data-[state=active]:!bg-amber-900/40 dark:data-[state=active]:border-amber-400/30 dark:data-[state=active]:!text-amber-500 !text-black dark:!text-white">Most Viewed</TabsTrigger>
+              <TabsTrigger value="mostfavorited" className="cursor-pointer data-[state=active]:!bg-amber-100/40 data-[state=active]:border-amber-600/40 dark:data-[state=active]:!bg-amber-900/40 dark:data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-black dark:!text-white">Most Favorited</TabsTrigger>
             </TabsList>
             <TabsContent value="mostrecent" className='w-full overflow-x-auto overflow-y-visible scrollbar scrollbar-thumb-amber-100 dark:scrollbar-thumb-amber-900 scrollbar-track-zinc-50 dark:scrollbar-track-zinc-950 mt-0 pb-2'>
               <div className='flex flex-col gap-4 min-[450px]:flex min-[450px]:flex-row min-[450px]:flex-nowrap min-[450px]:py-2'>
               {books.docs.slice(0, 10).map((book, index) => (
                 <a key={book.id} href={`/book/${book.id}`} className={`cursor-pointer no-underline flex ${index >= 3 ? 'hidden min-[450px]:flex' : ''}`}>
-                    <Card className='border-2 border-amber-400/30 bg-gradient-to-br from-amber-950/40 to-amber-950/20 shadow-lg hover:scale-[1.02] transition-transform w-[280px] h-full flex flex-col justify-between origin-center'>
+                    <Card className='border-2 border-amber-600/30 dark:border-amber-400/30 bg-gradient-to-br from-amber-50/40 to-amber-50/20 dark:from-amber-950/40 dark:to-amber-950/20 shadow-lg hover:scale-[1.02] transition-transform w-[280px] h-full flex flex-col justify-between origin-center'>
                     <CardHeader>
                       <CardTitle>{book.title}</CardTitle>
                     </CardHeader>
@@ -105,22 +105,22 @@ export default async function Home() {
           </Tabs>
         </CardContent>
       </Card>
-      <Card className='flex w-full mb-32 rounded-lg border-2 border-amber-400/30 bg-gradient-to-br from-amber-950/40 to-amber-950/20 shadow-xl max-w-full gap-2'>
+      <Card className='flex w-full mb-32 rounded-lg border-2 border-amber-600/30 dark:border-amber-400/30 bg-gradient-to-br from-amber-50/40 to-amber-50/20 dark:from-amber-950/40 dark:to-amber-950/20 shadow-xl max-w-full gap-2'>
         <CardHeader className='text-center min-[500px]:text-left'>
           <CardTitle className='text-xl'>Authors</CardTitle>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="mostrecent" className='flex flex-col gap-6 w-full items-center min-[500px]:items-baseline'>
-            <TabsList className='flex flex-col min-[450px]:flex-row bg-amber-900/40 border border-amber-400/30 w-fit h-fit'>
-              <TabsTrigger value="mostrecent" className="cursor-pointer data-[state=active]:!bg-amber-900/40 data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-white">Most Recent</TabsTrigger>
-              <TabsTrigger value="placeholder1" className="cursor-pointer data-[state=active]:!bg-amber-900/40 data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-white">Placeholder</TabsTrigger>
-              <TabsTrigger value="placeholder2" className="cursor-pointer data-[state=active]:!bg-amber-900/40 data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-white">Placeholder</TabsTrigger>
+            <TabsList className='flex flex-col min-[450px]:flex-row bg-amber-100/40 border-amber-600/30 dark:bg-amber-900/40 border dark:border-amber-400/30 w-fit h-fit'>
+              <TabsTrigger value="mostrecent" className="cursor-pointer data-[state=active]:!bg-amber-100/40 data-[state=active]:!border-amber-600/40 dark:data-[state=active]:!bg-amber-900/40 dark:data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-black dark:!text-white">Most Recent</TabsTrigger>
+              <TabsTrigger value="placeholder1" className="cursor-pointer data-[state=active]:!bg-amber-100/40 data-[state=active]:!border-amber-600/40 dark:data-[state=active]:!bg-amber-900/40 dark:data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-black dark:!text-white">Placeholder</TabsTrigger>
+              <TabsTrigger value="placeholder2" className="cursor-pointer data-[state=active]:!bg-amber-100/40 data-[state=active]:!border-amber-600/40 dark:data-[state=active]:!bg-amber-900/40 dark:data-[state=active]:border-amber-400/30 data-[state=active]:!text-amber-500 !text-black dark:!text-white">Placeholder</TabsTrigger>
             </TabsList>
             <TabsContent value="mostrecent" className='w-full overflow-x-auto overflow-y-visible scrollbar scrollbar-thumb-amber-100 dark:scrollbar-thumb-amber-900 scrollbar-track-zinc-50 dark:scrollbar-track-zinc-950 mt-0 pb-2'>
               <div className='flex flex-col gap-4 min-[450px]:flex min-[450px]:flex-row min-[450px]:flex-nowrap min-[450px]:py-2'>
               {authors.docs.slice(0, 10).map((author, index) => (
                 <a key={author.id} href={`/author/${author.id}`} className={`cursor-pointer no-underline flex ${index >= 3 ? 'hidden min-[450px]:flex' : ''}`}>
-                  <Card className='border-2 border-amber-400/30 bg-gradient-to-br from-amber-950/40 to-amber-950/20 shadow-lg hover:scale-[1.02] transition-transform w-[280px] min-[450px]:w-[220px] h-full flex flex-col justify-between origin-center'>
+                  <Card className='border-2 border-amber-600/30 dark:border-amber-400/30 bg-gradient-to-br from-amber-50/40 to:amber-50/20 dark:from-amber-950/40 dark:to-amber-950/20 shadow-lg hover:scale-[1.02] transition-transform w-[280px] min-[450px]:w-[220px] h-full flex flex-col justify-between origin-center'>
                     <CardHeader>
                       <CardTitle>{author.displayName}</CardTitle>
                     </CardHeader>
