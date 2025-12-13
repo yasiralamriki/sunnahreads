@@ -12,7 +12,6 @@ A modern web application for discovering and exploring Islamic literature, built
 - **⚡ Fast Performance**: Powered by Next.js 15 with Turbopack
 - **📊 Content Management**: Admin panel powered by PayloadCMS
 - **☁️ Cloud Storage**: S3-compatible storage integration
-- **📈 Analytics**: Integrated Vercel Analytics and Speed Insights
 
 ## 🛠️ Tech Stack
 
@@ -181,10 +180,10 @@ Edit collection files in `src/collections/` to customize the data structure for 
 
 ## 📦 Deployment
 
-### Vercel (Recommended)
+### Replit (Recommended)
 
 1. Push your code to GitHub
-2. Import the repository in [Vercel](https://vercel.com)
+2. Import the repository in Replit
 3. Configure environment variables
 4. Deploy
 
@@ -222,7 +221,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - [PayloadCMS](https://payloadcms.com/) for the excellent headless CMS
 - [Next.js](https://nextjs.org/) for the powerful React framework
-- [Vercel](https://vercel.com/) for hosting and analytic
 
 ## 📞 Contact
 

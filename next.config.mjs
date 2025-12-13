@@ -2,7 +2,6 @@ import { withPayload } from "@payloadcms/next/withPayload";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Use default .next directory for better compatibility with Vercel
   basePath: process.env.NEXT_PUBLIC_BASE_PATH === '/' ? '' : (process.env.NEXT_PUBLIC_BASE_PATH || ''),
 
   // Performance optimizations
